@@ -13,7 +13,15 @@ public class RockPaperScissors {
         System.out.println(computerChoice);
     }
 
-    
+    public void getUserChoice() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to Rock, Paper, Scissors!");
+        System.out.print("Enter your choice (rock, paper, or scissors): ");
+        userChoice = scanner.nextLine().toLowerCase();
+        scanner.close();
+    }
+
     public String determineWinner() {
         String result;
 
