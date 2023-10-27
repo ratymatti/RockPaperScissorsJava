@@ -10,7 +10,6 @@ public class RockPaperScissors {
         Random random = new Random();
         int randomIndex = random.nextInt(options.length);
         computerChoice = options[randomIndex];
-        System.out.println(computerChoice);
     }
 
     public void getUserChoice() {
@@ -19,7 +18,6 @@ public class RockPaperScissors {
         System.out.println("Welcome to Rock, Paper, Scissors!");
         System.out.print("Enter your choice (rock, paper, or scissors): ");
         userChoice = scanner.nextLine().toLowerCase();
-        scanner.close();
     }
 
     public String determineWinner() {
@@ -41,7 +39,22 @@ public class RockPaperScissors {
     }
 
     public static void main(String[] args) {
-    
+        Scanner scanner = new Scanner(System.in);
+        String playAgain = "yes";
+
+        while (playAgain.equals("yes")) {
+            RockPaperScissors game = new RockPaperScissors();
+
+            game.getUserChoice();
+            game.getComputerChoice();
+
+            String result = game.determineWinner();
+            System.out.println(result);
+
+            System.out.print("Play again? (yes/no): ");
+            playAgain = scanner.nextLine().toLowerCase();
+        }
+        scanner.close();
     }
 }
 
