@@ -14,10 +14,18 @@ public class RockPaperScissors {
 
     public void getUserChoice() {
         Scanner scanner = new Scanner(System.in);
+        String userInput;
 
-        System.out.println("Welcome to Rock, Paper, Scissors!");
         System.out.print("Enter your choice (rock, paper, or scissors): ");
-        userChoice = scanner.nextLine().toLowerCase();
+        userInput = scanner.nextLine().toLowerCase();
+
+        if (validateInput("choice", userInput)) {
+            userChoice = userInput;
+        } else {
+            System.out.println("'" + userInput + "' is not valid input");
+            getUserChoice();
+        }
+        
     }
 
     public String determineWinner() {
@@ -37,10 +45,26 @@ public class RockPaperScissors {
 
         return result;
     }
+ 
+    public boolean validateInput(String input, String submittedInput) {
+        switch (input) {
+            case "choice":
+                if (submittedInput.equals("rock") || submittedInput.equals("paper") || submittedInput.equals("scissors")) {
+                    return true;
+                } else {
+                    return false;
+                } 
+            default:
+                return false;    
+        }
+
+    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String playAgain = "yes";
+
+        System.out.println("Welcome to Rock, Paper, Scissors!");
 
         while (playAgain.equals("yes")) {
             RockPaperScissors game = new RockPaperScissors();
