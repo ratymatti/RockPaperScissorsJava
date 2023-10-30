@@ -22,7 +22,7 @@ public class RockPaperScissors {
         if (validateInput("choice", userInput)) {
             userChoice = userInput;
         } else {
-            System.out.println("'" + userInput + "' is not valid input");
+            System.out.println("'" + userInput + "' is not valid input.");
             getUserChoice();
         }
         
@@ -53,16 +53,22 @@ public class RockPaperScissors {
                     return true;
                 } else {
                     return false;
-                } 
+                }
+            case "playAgain":
+                if (submittedInput.equals("yes") || submittedInput.equals("no")) {
+                    return true;
+                } else {
+                    return false;
+                }     
             default:
                 return false;    
         }
-
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String playAgain = "yes";
+        String isPlayAgain;
 
         System.out.println("Welcome to Rock, Paper, Scissors!");
 
@@ -76,7 +82,18 @@ public class RockPaperScissors {
             System.out.println(result);
 
             System.out.print("Play again? (yes/no): ");
-            playAgain = scanner.nextLine().toLowerCase();
+            isPlayAgain = scanner.nextLine().toLowerCase();
+
+            if (!game.validateInput("playAgain", isPlayAgain)) {
+                while (!game.validateInput("playAgain", isPlayAgain)) {
+                    System.out.println("'" + isPlayAgain + "' is not valid command.");
+                    System.out.print("Play again? (yes/no): ");
+                    isPlayAgain = scanner.nextLine().toLowerCase(); 
+                }
+                playAgain = isPlayAgain;
+            } else {
+                playAgain = isPlayAgain;
+            }
         }
         scanner.close();
     }
